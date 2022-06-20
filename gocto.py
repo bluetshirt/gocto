@@ -22,8 +22,8 @@ class GoctoPlugin(octoprint.plugin.StartupPlugin,
             PING_TARGET = "8.8.8.8"
             cmd = "ping -c 1 %s" % PING_TARGET
             output = os.popen(cmd).read()
-            self._logger.info("ping output:")
-            self._logger.info(output)
+            #self._logger.info("ping output:")
+            #self._logger.info(output)
             return ("1 received" in output)
         except:
             return False
@@ -58,7 +58,7 @@ class GoctoPlugin(octoprint.plugin.StartupPlugin,
                 if hit_minimum_uptime:
                     if not (is_online and is_correct_ip):
                         self._logger.info("shutdown condition met, shutting down")
-                        call("sudo shutdown -h now", shell=True)
+                        call("sudo shutdown -r now", shell=True)
            
             self._logger.info("sleeping for %s seconds" % SLEEP_WAIT)
             time.sleep(SLEEP_WAIT)
